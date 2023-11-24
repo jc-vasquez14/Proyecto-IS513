@@ -1,0 +1,9 @@
+<expresion> ::= <termino> | <termino> "+" <expresion> | <termino> "-" <expresion>
+
+<termino> ::= <factor> | <factor> "." <termino> | <factor> "/" <termino>
+
+<factor> ::= <numero> | "(" <expresion> ")"
+
+<numero> ::= <digito> | <digito> <numero>
+
+<digito> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
