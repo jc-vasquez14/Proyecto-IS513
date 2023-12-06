@@ -48,15 +48,10 @@ def p_error(p):
     print("Syntax error in input!")
 
 
-#Esta parte del Codigo se borrara
+
+
+
+
 # Build the parser
 parser = yacc.yacc()
 
-# Define the code to parse
-code = comando
-
-# Parse the code and generate the syntax tree
-tree = ast.parse(code)
-
-# Print the syntax tree
-print(ast.dump(tree))
