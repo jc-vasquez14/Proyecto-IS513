@@ -1,13 +1,7 @@
-<expresion> ::= <termino> | <termino> "+" <expresion> | <termino> "-" <expresion>
+<cuadro_movimientos> ::= arriba | abajo | izquierda | derecha 
 
-<termino> ::= <factor> | <factor> "." <termino> | <factor> "/" <termino>
+<estado> ::= libre | bloqueado
 
-<factor> ::= <numero> | "(" <expresion> ")"
+<posicion> ::= función posición() : (x, y)
 
-<numero> ::= <digito> | <digito> <numero>
-
-<digito> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
-
-<base> ::= <numero> | "(" <expresion> ")"
-
-<potencia> ::= <base> "^" <exponente>
+<numero> ::= 0 | [1-9] [0-9]
