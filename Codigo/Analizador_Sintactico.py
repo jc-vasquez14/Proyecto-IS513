@@ -47,6 +47,8 @@ def p_position(p):
 def p_error(p):
     print("Syntax error in input!")
 
+
+#Esta parte del Codigo se borrara
 # Build the parser
 parser = yacc.yacc()
 
