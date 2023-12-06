@@ -42,7 +42,7 @@ def t_COMMENT(t):
 
 
 
-
+#Esta parte del Codigo se borrara
 #Ejemplo del Analizador Lexico
 analizador = lex.lex()
 
