@@ -1,6 +1,7 @@
 import ply.lex as lex
 import re
 
+contiene_error=False
 # Definir los tokens
 tokens = ['ARRIBA','ABAJO','IZQUIERDA','DERECHA','LIBRE','BLOQUEADO','TERMINAR','POSICION','NUMERO',"COMA"]
 
@@ -33,6 +34,8 @@ def t_newline(t):
 def t_error(t):
     print("Carácter no válido: '%s'" % t.value[0])
     t.lexer.skip(1)
+    
+    
 
 # Expresión regular para comentarios
 def t_COMMENT(t):
@@ -42,19 +45,20 @@ def t_COMMENT(t):
 
 
 
-#Esta parte del Codigo se borrara
+
 #Ejemplo del Analizador Lexico
 analizador = lex.lex()
 
 #Cadena de entrada a analizar
-comando = "arriba,abafdjo"
-
+with open('comando.txt', 'r') as archivo:
+    comando = archivo.read()
 
 #Pasamos la cadena al analizador léxico
 analizador.input(comando)
-
 #Iteramos sobre los tokens generados e imprimimos su tipo y valor
-for token in analizador:
-    print(f'Tipo: {token.type}, Valor: {token.value}')
+
+
+
+
 
 
