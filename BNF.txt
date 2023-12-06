@@ -10,4 +10,4 @@
 
 <comentario> ::= ( <texto> )
 
-<comando> ::= <instruccion> <comentario> | <instruccion>
+<comando> ::= <instruccion> (, <comentario> | <instruccion>)+
