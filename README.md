@@ -17,8 +17,11 @@ izquierda
 Reglas para Comentarios
 El comentario tiene que ir despues de una instruccion 
 Ejemplo:
--arriba,arriba (Comentario),derecha
+-arriba,arriba (Comentario_Hola_Mundo),derecha
 +Esto es valido
+
+-arriba,(Comentario Hola Mundo) arriba 
++Esto no es valido
 
 -arriba,(Comentario) arriba 
 +Esto no es valido
