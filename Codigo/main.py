@@ -2,68 +2,46 @@ import ast
 from Analizador_Lexico import tokens,analizador
 from Analizador_Sintactico import parser
 import ply.yacc as yacc
+from Laberinto import *
+import os
+import sys
 
-# Suponiendo que 'tree' es el árbol de sintaxis generado por ast.parse()
-def translate_directions(node):
-    if isinstance(node, ast.Expr):
-        translate_directions(node.value)
-    elif isinstance(node, ast.Call):
-        translate_directions(node.func)
-        for arg in node.args:
-            translate_directions(arg)
-    elif isinstance(node, ast.Name):
-        direction_mapping = {
-            'arriba': 'W',
-            'abajo': 'S',
-            'izquierda': 'A',
-            'derecha': 'D'
-        }
-        if node.id in direction_mapping:
-            print(f"Traducción: {direction_mapping[node.id]}")
-        else:
-            print(f"No se encontró una traducción para '{node.id}'")
+#Comando
+def limpiar_consola():
+    if os.name == "nt":
+        os.system("cls")
     else:
-        print(f"Tipo de nodo no compatible: {type(node)}")
+        os.system("clear")
 
 
 
-#Cadena de entrada a analizar
-with open('comando.txt', 'r') as archivo:
-    comando = archivo.read()
 
+Lab=Laberinto(width=10,height=10)
+Lab.generar_Laberinto()
+Lab.print_Laberinto()
 
 # Define the code to parse
-code = comando
+code = input()
+
 
 # Parse the code and generate the syntax tree
 tree = ast.parse(code)
 
-
+analizador.input(code)
+limpiar_consola()
 
 for token in analizador:
-    print(f'Tipo: {token.type}, Valor: {token.value}')
+
+    Lab.movimientos(token.value)
+    
+    # print(f'Tipo: {token.type}, Valor: {token.value}')
+    if token.value!=",":
+        print(f'Tipo: {token.type}, Valor: {token.value}')
+        Lab.print_Laberinto()
     
 
 
+'''
 print(ast.dump(tree))
 
-
-analizador.input(code)
-
-direction_mapping = {
-    'arriba': 'W',
-    'abajo': 'S',
-    'izquierda': 'A',
-    'derecha': 'D'
-}
-
-# Lista para almacenar las direcciones traducidas
-translated_directions = []
-
-
-for token in analizador:
-    if token.value in direction_mapping:
-        translated_directions.append(direction_mapping[token.value])
-
-# Imprimir el resultado
-print("Direcciones traducidas:", translated_directions)
+'''
