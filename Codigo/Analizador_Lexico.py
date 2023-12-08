@@ -49,16 +49,6 @@ def t_COMMENT(t):
 #Ejemplo del Analizador Lexico
 analizador = lex.lex()
 
-#Cadena de entrada a analizar
-with open('comando.txt', 'r') as archivo:
-    comando = archivo.read()
-
-#Pasamos la cadena al analizador léxico
-analizador.input(comando)
-#Iteramos sobre los tokens generados e imprimimos su tipo y valor
-
-
-
 
 
 
