@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 import ast
 from Analizador_Lexico import tokens  # Import tokens from your lexical analyzer
-from Analizador_Lexico import comando
+
 
 # Define the grammar rules
 def p_command(p):
