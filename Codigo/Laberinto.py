@@ -1,5 +1,5 @@
 import random
-
+import sys
 class Laberinto:
     def __init__(self, width, height):
         self.width = width
@@ -84,3 +84,43 @@ class Laberinto:
     def print_Laberinto(self):
         for row in self.maze:
             print(' '.join(row))
+
+    def movimientos(self, comando):
+        # Buscar la posición de la X en el laberinto
+        for i in range(self.height):
+            for j in range(self.width):
+                if self.maze[i][j] == 'X':
+                    x, y = i, j
+                    break
+        # Determinar la nueva posición según el comando
+        if comando == "arriba":
+            nx, ny = x - 1, y
+        elif comando == "izquierda":
+            nx, ny = x, y - 1
+        elif comando == "derecha":
+            nx, ny = x, y + 1
+        elif comando == "abajo":
+            nx, ny = x + 1, y
+        elif comando == ",":
+            nx, ny = x , y
+        elif comando=="pocision":
+            print('({},{})'.format(x, y))
+            return
+        else:
+            print("Comando inválido")
+            return
+        
+        # Verificar si la nueva posición es válida (no es una pared ni está fuera del laberinto)
+        if nx >= 0 and ny >= 0 and nx < self.height and ny < self.width and self.maze[nx][ny] != '1':
+            # Mover la X a la nueva posición y dejar un espacio vacío en la anterior
+            self.maze[x][y] = '0'
+            self.maze[nx][ny] = 'X'
+            if self.maze[nx][ny]=='2':
+                print("Meta")
+            else:
+                print("Libre")
+        else:
+            print("Bloqueado")
+            
+            
+
