@@ -8,33 +8,38 @@ class Laberinto:
 
     def generar_Laberinto(self):
       
-        # Create a stack to hold the cell locations
+        #Crear una pila para guardar la pocision de las celdas
         stack = []
-        # Choose a random starting point
-                
+
+        # Elgir un punto de partida aleatorio
         start_x, start_y = random.randint(0, self.width-1), random.randint(0, self.height-1)
         self.maze[start_y][start_x] = 'X'
-        # Add the starting point to the stack
+
+        # Agregar el punto de partida X a la pila
         stack.append((start_x, start_y))
 
         while len(stack) > 0:
             x, y = stack[-1]
-            # Find all neighbors of the current cell with 2 adjacent walls
+
+            # Encuentra todos los vecinos de la celda actual con 2 paredes adyacentes
             neighbors = [(x-2, y), (x+2, y), (x, y-2), (x, y+2)]
             neighbors = [(nx, ny) for nx, ny in neighbors if nx >= 0 and ny >= 0 and nx < self.width and ny < self.height and self.maze[ny][nx] == '1']
+            
             if len(neighbors) == 0:
-                # If the current cell has no neighbors, pop it from the stack
+                #Si la celula actual no tiene vecines,le hacemos pop
                 stack.pop()
             else:
-                # Choose a random neighbor
+                #Escoger un vecino aleatorio
                 nx, ny = random.choice(neighbors)
-                # Remove the wall between the current cell and chosen cell
+
+                #Remover el muro entre la celula actual y la elegida
                 self.maze[ny][nx] = '0'
                 self.maze[y + (ny-y)//2][x + (nx-x)//2] = '0'
-                # Push the chosen cell into the stack
+
+                #Push a la celula elegida en el stack
                 stack.append((nx, ny))
 
-            # Set the bottom right cell as the final point
+            #Poner la celula abajo a la derecha como meta final.
             self.maze[self.height-1][self.width-1] = '2'
 
         #Correcion de laberintos imposibles
@@ -44,47 +49,17 @@ class Laberinto:
     
         
 
-
     def borrar_Laberinto(self):
         self.maze= [['1' for x in range(self.width)] for y in range(self.height)]
                      
                     
             
 
-    def check_maze(maze):
-        # Find the starting point
-        for i in range(len(maze)):
-            for j in range(len(maze[0])):
-                if maze[i][j] == 'X':
-                    start = (i, j)
-                    break
-
-        # Create a queue to hold the cell locations
-        queue = []
-        # Add the starting point to the queue
-        queue.append(start)
-
-        while len(queue) > 0:
-            x, y = queue.pop(0)
-            # Check if we have reached the end of the maze
-            if maze[x][y] == '2':
-                return True
-            # Mark the current cell as visited
-            maze[x][y] = 'V'
-            # Find all neighbors of the current cell
-            neighbors = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
-            # Add the unvisited neighbors to the queue
-            for nx, ny in neighbors:
-                if nx >= 0 and ny >= 0 and nx < len(maze) and ny < len(maze[0]) and maze[nx][ny] != 'V' and maze[nx][ny] != '1':
-                    queue.append((nx, ny))
-
-        # If we have exhausted all possible paths and haven't reached the end, the maze is unsolvable
-        return False
-
     def print_Laberinto(self):
         for row in self.maze:
             print(' '.join(row))
 
+    
     def movimientos(self, comando):
         # Buscar la posición de la X en el laberinto
         for i in range(self.height):
@@ -106,6 +81,8 @@ class Laberinto:
         elif comando=="pocision":
             print('({},{})'.format(x, y))
             return
+        elif comando=="terminar":
+            sys.exit()
         else:
             print("Comando inválido")
             return
@@ -117,10 +94,12 @@ class Laberinto:
             self.maze[nx][ny] = 'X'
             if self.maze[nx][ny]=='2':
                 print("Meta")
+               
             else:
                 print("Libre")
         else:
             print("Bloqueado")
             
             
+
 
