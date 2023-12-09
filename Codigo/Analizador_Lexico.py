@@ -22,8 +22,6 @@ pocision_count = 0
 
 # Ignorar espacios en blanco y tabulaciones
 t_ignore = ' \t'
-
-
     
 # Manejo de saltos de línea
 def t_newline(t):
@@ -34,21 +32,11 @@ def t_newline(t):
 def t_error(t):
     print("Carácter no válido: '%s'" % t.value[0])
     t.lexer.skip(1)
-    
-    
-
+        
 # Expresión regular para comentarios
 def t_COMMENT(t):
     r'\(.*?\)'
     pass
 
-
-
-
-
 #Ejemplo del Analizador Lexico
 analizador = lex.lex()
-
-
-
-
