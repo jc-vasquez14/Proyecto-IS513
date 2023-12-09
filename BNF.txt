@@ -3,8 +3,6 @@
 
 <posicion> ::= función posición() 
 
-<numero> ::= 0 | [1-9] [0-9]
-
 <comentario> ::= ( <texto> )
 
 <comando> ::= <instruccion> (, <comentario> | <instruccion>)+
