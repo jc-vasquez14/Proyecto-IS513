@@ -3,7 +3,7 @@ import ast
 from Analizador_Lexico import tokens  #Importar token del analizador lexico
 
 
-# Define the grammar rules
+# Definir las reglas de la gramatica
 def p_command(p):
     '''
     command : movement
