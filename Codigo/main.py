@@ -15,33 +15,42 @@ def limpiar_consola():
 
 
 
-
+#Generacion del Laberinto
 Lab=Laberinto(width=10,height=10)
 Lab.generar_Laberinto()
 Lab.print_Laberinto()
+while True:
 
-# Define the code to parse
-code = input()
+    code = input()
 
 
-# Parse the code and generate the syntax tree
-tree = ast.parse(code)
+    # Genera el Arbol Sintactico
+    tree = ast.parse(code)
 
-analizador.input(code)
-limpiar_consola()
+    analizador.input(code)
 
-for token in analizador:
+    #limpiar_consola()
 
-    Lab.movimientos(token.value)
-    
-    # print(f'Tipo: {token.type}, Valor: {token.value}')
-    if token.value!=",":
-        print(f'Tipo: {token.type}, Valor: {token.value}')
-        Lab.print_Laberinto()
-    
+    for token in analizador:
+
+       
+        
+        #print(f'Tipo: {token.type}, Valor: {token.value}')
+        
+        if token.value!=",":
+            print(f'Tipo: {token.type}, Valor: {token.value}')
+            Lab.movimientos(token.value)
+            Lab.print_Laberinto()
+            print("")
+        
+
+            
+            
+
 
 
 '''
+Imprime el Arbol Sintactico
 print(ast.dump(tree))
 
 '''
